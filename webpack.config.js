@@ -1,5 +1,7 @@
 //引用webpack
 const webpack = require('webpack');
+const HtmlWebpackPlugun = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 清除插件
 //模块导出
 module.exports = {
   //入口文件
@@ -41,6 +43,10 @@ module.exports = {
   plugins: [
     //热加载插件
     new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugun({
+      template:'./public/index.html'
+    }),
   ],
   //开发服务器配置
   devServer: {
@@ -51,8 +57,6 @@ module.exports = {
     //加载IP地址
     host: '0.0.0.0',
     // 检查hostname
-    disableHostCheck: true,
-
     https: true,
   }
 };
